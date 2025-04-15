@@ -1,0 +1,66 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "MSPM0G350X" --part "Default" --package "LQFP-64(PM)" --product "mspm0_sdk@2.04.00.06"
+ * @v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)" --product "mspm0_sdk@2.04.00.06"
+ * @versions {"tool":"1.23.0+4000"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                          = "GPIO_GraySensor";
+GPIO1.associatedPins.create(8);
+GPIO1.associatedPins[0].$name        = "N1";
+GPIO1.associatedPins[0].assignedPort = "PORTA";
+GPIO1.associatedPins[0].assignedPin  = "27";
+GPIO1.associatedPins[1].$name        = "N2";
+GPIO1.associatedPins[1].assignedPort = "PORTA";
+GPIO1.associatedPins[1].assignedPin  = "26";
+GPIO1.associatedPins[2].$name        = "N3";
+GPIO1.associatedPins[2].assignedPort = "PORTA";
+GPIO1.associatedPins[2].assignedPin  = "25";
+GPIO1.associatedPins[3].$name        = "N4";
+GPIO1.associatedPins[3].assignedPort = "PORTA";
+GPIO1.associatedPins[3].assignedPin  = "24";
+GPIO1.associatedPins[4].$name        = "N5";
+GPIO1.associatedPins[4].assignedPort = "PORTB";
+GPIO1.associatedPins[4].assignedPin  = "25";
+GPIO1.associatedPins[5].$name        = "N6";
+GPIO1.associatedPins[5].assignedPort = "PORTB";
+GPIO1.associatedPins[5].assignedPin  = "24";
+GPIO1.associatedPins[6].$name        = "N7";
+GPIO1.associatedPins[6].assignedPort = "PORTB";
+GPIO1.associatedPins[6].assignedPin  = "20";
+GPIO1.associatedPins[7].$name        = "N8";
+GPIO1.associatedPins[7].assignedPort = "PORTA";
+GPIO1.associatedPins[7].assignedPin  = "22";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+SYSCTL.forceDefaultClkConfig = true;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+GPIO1.associatedPins[0].pin.$suggestSolution = "PA27";
+GPIO1.associatedPins[1].pin.$suggestSolution = "PA26";
+GPIO1.associatedPins[2].pin.$suggestSolution = "PA25";
+GPIO1.associatedPins[3].pin.$suggestSolution = "PA24";
+GPIO1.associatedPins[4].pin.$suggestSolution = "PB25";
+GPIO1.associatedPins[5].pin.$suggestSolution = "PB24";
+GPIO1.associatedPins[6].pin.$suggestSolution = "PB20";
+GPIO1.associatedPins[7].pin.$suggestSolution = "PA22";
+Board.peripheral.$suggestSolution            = "DEBUGSS";
+Board.peripheral.swclkPin.$suggestSolution   = "PA20";
+Board.peripheral.swdioPin.$suggestSolution   = "PA19";
+SYSCTL.peripheral.$suggestSolution           = "SYSCTL";
